@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Niwanseng Rai, second-year B.E. student in Artificial Intelligence and Machine Learning. Portfolio with projects, skills and contact details.">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0B0B'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-weight='700' font-size='15' text-anchor='middle' fill='%23EDEDED'%3ENR%3C/text%3E%3C/svg%3E">
+<title>Niwanseng Rai Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: sticky bar with scroll meter, split hero (bouncing name + role ticker, tilting fact card), timeline education, pinned EcoTrack project with a playable bin game, flip cards for soft skills, contact. Black and grey palette; the four bins are told apart by grey tone and label. */
+:root {
+  --bg: #0B0B0B;
+  --surface: #151515;
+  --ink: #EDEDED;
+  --muted: #9B9B9B;
+  --line: #2B2B2B;
+  --accent: #D9D9D9;
+  --accent-ink: #0B0B0B;
+  --accent-soft: #232323;
+  --leaf: #F2F2F2;
+  --sky: #BDBDBD;
+  --coral: #8A8A8A;
+  --slate: #4A4A4A;
+  --sun: #FFFFFF;
+  --b1: #F2F2F2; --t1: #0B0B0B;
+  --b2: #BDBDBD; --t2: #0B0B0B;
+  --b3: #8A8A8A; --t3: #0B0B0B;
+  --b4: #4A4A4A; --t4: #EDEDED;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #E4E4E4;
+    --surface: #F4F4F4;
+    --ink: #111111;
+    --muted: #565656;
+    --line: #C4C4C4;
+    --accent: #1A1A1A;
+    --accent-ink: #F4F4F4;
+    --accent-soft: #D2D2D2;
+    --leaf: #1A1A1A;
+    --sky: #4D4D4D;
+    --coral: #8A8A8A;
+    --slate: #B5B5B5;
+    --sun: #000000;
+    --b1: #1A1A1A; --t1: #F4F4F4;
+    --b2: #4D4D4D; --t2: #F4F4F4;
+    --b3: #8A8A8A; --t3: #111111;
+    --b4: #C0C0C0; --t4: #111111;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #E4E4E4;
+  --surface: #F4F4F4;
+  --ink: #111111;
+  --muted: #565656;
+  --line: #C4C4C4;
+  --accent: #1A1A1A;
+  --accent-ink: #F4F4F4;
+  --accent-soft: #D2D2D2;
+  --leaf: #1A1A1A;
+  --sky: #4D4D4D;
+  --coral: #8A8A8A;
+  --slate: #B5B5B5;
+  --sun: #000000;
+  --b1: #1A1A1A; --t1: #F4F4F4;
+  --b2: #4D4D4D; --t2: #F4F4F4;
+  --b3: #8A8A8A; --t3: #111111;
+  --b4: #C0C0C0; --t4: #111111;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  padding-inline: 1rem;
+  padding-block: 0 3rem;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+button { font-family: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 64rem; margin-inline: auto; }
+.mono { font-family: var(--font-mono); }
+
+/* ---------- Top bar ---------- */
+.bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+}
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1.25rem; padding-block: 0.6rem; }
+.brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 700; font-size: 1.125rem; text-decoration: none; letter-spacing: -0.01em; }
+.brand i { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 0.5rem; background: var(--accent); color: var(--accent-ink); font-style: normal; font-size: 0.8125rem; transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1); }
+.brand:hover i { transform: rotate(-12deg) scale(1.12); }
+.bar-right { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.nav { display: flex; flex-wrap: wrap; gap: 0.1rem 1rem; }
+.nav a { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); text-decoration: none; padding-block: 0.3rem; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--accent); }
+.nav a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.theme { width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--bg); cursor: pointer; display: grid; place-items: center; padding: 0; transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1); }
+.theme span { width: 1rem; height: 1rem; border-radius: 50%; border: 1.5px solid var(--ink); background: linear-gradient(90deg, var(--ink) 50%, transparent 50%); }
+.theme:hover { transform: rotate(180deg); }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, var(--leaf), var(--sky), var(--coral), var(--slate)); }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; padding-block: 3.5rem 3rem; }
+.blob { position: absolute; z-index: -1; border-radius: 50%; opacity: 0.16; pointer-events: none; animation: drift 9s ease-in-out infinite; }
+.blob.b1 { width: 14rem; height: 14rem; background: var(--sky); right: 4%; top: 2%; }
+.blob.b2 { width: 8rem; height: 8rem; background: var(--leaf); left: -2%; bottom: 8%; animation-delay: -3s; }
+.blob.b3 { width: 5rem; height: 5rem; background: var(--coral); left: 46%; top: 6%; animation-delay: -6s; }
+.blob.b4 { width: 3rem; height: 3rem; background: var(--sun); right: 38%; bottom: 4%; animation-delay: -1.5s; }
+@keyframes drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(14px, -20px) scale(1.08); } }
+
+.eyebrow { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.75rem; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.75rem, 8vw, 5rem); line-height: 1; letter-spacing: -0.03em; margin: 0 0 1rem; }
+h1 .word { display: inline-flex; margin-right: 0.28em; }
+.ch { display: inline-block; cursor: default; transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1), color 0.2s; animation: drop 0.8s cubic-bezier(.34, 1.56, .64, 1) backwards; animation-delay: calc(var(--i) * 45ms); }
+.ch:hover { transform: translateY(-0.14em) rotate(-7deg) scale(1.1); color: var(--c, var(--accent)); }
+@keyframes drop { from { transform: translateY(-0.7em) rotate(-10deg); } }
+.role { font-family: var(--font-mono); font-size: 1.0625rem; margin: 0 0 1rem; min-height: 1.7em; }
+.role b { color: var(--accent); font-weight: 500; }
+.caret { display: inline-block; width: 0.55ch; height: 1.1em; vertical-align: -0.18em; margin-left: 2px; background: var(--accent); animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+.lede { font-size: 1.2rem; color: var(--muted); max-width: 34rem; margin: 0 0 1.5rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-weight: 600; font-size: 1rem;
+  padding: 0.65rem 1.1rem; border-radius: 0.6rem; border: 1.5px solid var(--ink);
+  background: transparent; color: var(--ink); text-decoration: none; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(.34, 1.56, .64, 1), box-shadow 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); box-shadow: 0 6px 0 -2px var(--accent-soft); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { color: var(--accent-ink); filter: brightness(1.08); }
+.btn .arr { transition: transform 0.2s; }
+.btn:hover .arr { transform: translateX(4px); }
+
+.facts { background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; padding: 1.5rem; min-width: 0; transition: transform 0.15s ease-out; will-change: transform; }
+.monogram { display: grid; place-items: center; width: 4rem; height: 4rem; border-radius: 0.75rem; background: var(--accent); color: var(--accent-ink); font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; margin-bottom: 1.25rem; transition: transform 0.4s cubic-bezier(.34, 1.56, .64, 1); }
+.facts:hover .monogram { transform: rotate(-8deg) scale(1.08); }
+.facts dl { margin: 0; display: grid; gap: 0.9rem; }
+.facts dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0.1rem 0 0; font-weight: 600; overflow-wrap: anywhere; }
+.facts .score { font-family: var(--font-display); font-size: 2.25rem; line-height: 1.1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.facts .score small { font-family: var(--font-mono); font-size: 0.875rem; color: var(--muted); font-weight: 400; }
+
+/* ---------- Sections ---------- */
+section { padding-block: 2.75rem; border-top: 1px solid var(--line); scroll-margin-top: 4.5rem; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; letter-spacing: -0.02em; margin: 0 0 1.5rem; text-wrap: balance; }
+h2::after { content: ""; display: block; width: 4rem; height: 0.3rem; margin-top: 0.5rem; border-radius: 99rem; background: linear-gradient(90deg, var(--leaf) 0 25%, var(--sky) 0 50%, var(--coral) 0 75%, var(--slate) 0); }
+h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+p { margin: 0 0 1rem; }
+.js .reveal:not(.in) { transform: translateY(16px); }
+.reveal { transition: transform 0.6s cubic-bezier(.2, .8, .2, 1); }
+.about p { max-width: 40rem; font-size: 1.125rem; }
+.details { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin: 1.5rem 0 0; max-width: 44rem; }
+.details div { background: var(--surface); border: 1px solid var(--line); border-radius: 0.75rem; padding: 0.75rem 1rem; min-width: 0; }
+.details dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.details dd { margin: 0.1rem 0 0; font-weight: 600; }
+.hint-line { color: var(--muted); font-size: 0.9375rem; margin: 0.75rem 0 0; }
+
+/* Education timeline */
+.timeline { list-style: none; margin: 0; padding: 0 0 0 2rem; position: relative; display: grid; gap: 2rem; }
+.timeline::before { content: ""; position: absolute; left: 0.45rem; top: 0.6rem; bottom: 0.6rem; width: 2px; background: var(--line); }
+.timeline li { position: relative; min-width: 0; }
+.timeline .dot { position: absolute; left: -2rem; top: 0.4rem; width: 0.95rem; height: 0.95rem; border-radius: 50%; border: 3px solid var(--accent); background: var(--surface); }
+.timeline li:first-child .dot { background: var(--accent); animation: pulse 2s ease-out infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-soft); } 100% { box-shadow: 0 0 0 12px transparent; } }
+.when { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
+.timeline p { margin: 0 0 0.4rem; color: var(--muted); }
+.pill { display: inline-block; font-family: var(--font-mono); font-size: 0.8125rem; background: var(--accent-soft); color: var(--accent); padding: 0.15rem 0.65rem; border-radius: 99rem; font-weight: 500; }
+.meter { position: relative; height: 0.9rem; background: var(--line); border-radius: 99rem; overflow: hidden; max-width: 28rem; margin-top: 0.5rem; }
+.meter i { display: block; height: 100%; width: var(--v); background: linear-gradient(90deg, var(--leaf), var(--accent)); border-radius: inherit; }
+.meter.in i { animation: grow 1.3s cubic-bezier(.2, .8, .2, 1); }
+@keyframes grow { from { width: 0; } }
+.scale { display: flex; justify-content: space-between; max-width: 28rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* Projects */
+.pinned { background: var(--surface); border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.5rem; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; position: relative; }
+.pin { position: absolute; top: -0.8rem; left: 1.25rem; display: inline-flex; align-items: center; gap: 0.4rem; background: var(--ink); color: var(--bg); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 99rem; }
+.pin::before { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--coral); }
+.tag { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.pinned h3 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+.pinned .sub { color: var(--muted); font-weight: 600; margin-bottom: 0.75rem; }
+.tools { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0 0 1.25rem; padding: 0; }
+.tools li { font-family: var(--font-mono); font-size: 0.8125rem; border: 1px solid var(--line); border-radius: 0.4rem; padding: 0.15rem 0.6rem; color: var(--muted); }
+.tools li.on { border-color: var(--accent); color: var(--accent); }
+
+.game { border: 2px dashed var(--line); border-radius: 1rem; padding: 1.25rem; min-width: 0; background: var(--bg); }
+.game-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.game-head strong { font-family: var(--font-display); font-size: 1.125rem; }
+.stat { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); }
+.dots { display: flex; gap: 0.35rem; margin-bottom: 0.75rem; }
+.dots i { width: 0.6rem; height: 0.6rem; border-radius: 50%; border: 2px solid var(--line); transition: background 0.2s, border-color 0.2s, transform 0.3s cubic-bezier(.34, 1.56, .64, 1); }
+.dots i.now { border-color: var(--ink); transform: scale(1.3); }
+.dots i.ok { background: var(--ink); border-color: var(--ink); }
+.dots i.no { background: repeating-linear-gradient(45deg, var(--muted) 0 2px, transparent 2px 4px); border-color: var(--muted); }
+.item { display: grid; place-items: center; gap: 0.1rem; text-align: center; padding: 0.75rem; min-height: 8.5rem; background: var(--surface); border-radius: 0.9rem; border: 1px solid var(--line); }
+.item .emo { font-size: 3.5rem; line-height: 1.1; display: block; animation: hop 0.5s cubic-bezier(.34, 1.56, .64, 1); }
+.item.gone .emo { transform: translateY(2rem) scale(0.2); opacity: 0.2; transition: transform 0.4s ease-in, opacity 0.4s; animation: none; }
+.item .nm { font-weight: 600; }
+@keyframes hop { from { transform: translateY(-1.2rem) scale(0.8) rotate(-12deg); } }
+.bins { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-top: 0.75rem; }
+.bin { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; border: 1.5px solid rgba(128, 128, 128, 0.55); border-radius: 0.8rem; padding: 1.1rem 0.5rem 0.65rem; color: var(--t); font-weight: 600; font-size: 0.9375rem; cursor: pointer; background: var(--c); transition: transform 0.2s cubic-bezier(.34, 1.56, .64, 1), filter 0.2s; }
+.bin::before { content: ""; position: absolute; top: 0.4rem; left: 50%; width: 2.2rem; height: 0.28rem; margin-left: -1.1rem; border-radius: 99rem; background: currentColor; opacity: 0.55; transform-origin: left center; transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1); }
+.bin small { font-family: var(--font-mono); font-weight: 400; font-size: 0.75rem; opacity: 0.9; }
+.bin:hover:not(:disabled) { transform: translateY(-3px) rotate(-1.5deg); }
+.bin:hover:not(:disabled)::before { transform: rotate(-22deg); }
+.bin:disabled { cursor: default; filter: saturate(0.6) brightness(0.9); }
+.bin.right { filter: none; animation: pop 0.45s cubic-bezier(.34, 1.56, .64, 1); outline: 3px solid var(--sun); outline-offset: 2px; }
+.bin.wrong { animation: shake 0.4s; }
+.bin.g { --c: var(--b1); --t: var(--t1); } .bin.s { --c: var(--b2); --t: var(--t2); } .bin.r { --c: var(--b3); --t: var(--t3); } .bin.k { --c: var(--b4); --t: var(--t4); }
+@keyframes pop { 50% { transform: scale(1.1); } }
+@keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.feedback { min-height: 3.2rem; margin: 0.75rem 0 0; font-size: 0.95rem; }
+.result { text-align: center; padding-block: 0.5rem; }
+.result .big { font-family: var(--font-display); font-weight: 700; font-size: 3rem; line-height: 1; color: var(--accent); }
+.result .actions { justify-content: center; }
+
+.upnext { margin-top: 1.5rem; border: 2px dashed var(--line); border-radius: 1.25rem; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; color: var(--muted); }
+.upnext .plus { flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 2px solid var(--muted); font-size: 1.5rem; line-height: 1; transition: transform 0.6s cubic-bezier(.34, 1.56, .64, 1); }
+.upnext:hover .plus { transform: rotate(180deg); }
+.upnext p { margin: 0; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.5rem 3rem; }
+.skills h3 { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.6rem; list-style: none; margin: 0; padding: 0; }
+.chip { font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.4rem 0.9rem; cursor: pointer; transition: transform 0.2s cubic-bezier(.34, 1.56, .64, 1), border-color 0.2s, background 0.2s; }
+.chip:hover { animation: wobble 0.5s; border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); transform: translateY(-2px); }
+@keyframes wobble { 25% { transform: rotate(-5deg) scale(1.06); } 60% { transform: rotate(4deg) scale(1.06); } }
+.note { margin: 1.25rem 0 0; min-height: 3.2rem; padding: 0.75rem 1rem; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 0.6rem 0.6rem 0; color: var(--ink); }
+.note b { font-family: var(--font-display); }
+
+/* Soft skills flip cards */
+.flips { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.25rem; }
+.flip { display: grid; perspective: 900px; background: none; border: 0; padding: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; transition: transform 0.2s; }
+.flip:hover { transform: rotate(-1.2deg); }
+.face { grid-area: 1 / 1; min-width: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--line); transition: transform 0.7s cubic-bezier(.34, 1.3, .64, 1); display: flex; flex-direction: column; gap: 0.5rem; }
+.front { background: var(--surface); }
+.back { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); transform: rotateY(180deg); justify-content: center; }
+.flip[aria-pressed="true"] .front { transform: rotateY(-180deg); }
+.flip[aria-pressed="true"] .back { transform: rotateY(0); }
+.face .hint { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: auto; }
+.face h3 { font-size: 1.5rem; margin: 0; }
+.face p { margin: 0; }
+.back p { font-size: 1.125rem; }
+
+/* Contact */
+.big-line { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.75rem, 5vw, 2.75rem); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 1.25rem; max-width: 30rem; }
+.contact-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.email { font-family: var(--font-mono); font-size: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.6rem 0.9rem; overflow-wrap: anywhere; user-select: all; }
+footer { border-top: 1px solid var(--line); padding-top: 1.5rem; color: var(--muted); font-size: 0.9375rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; }
+
+/* Confetti */
+#confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 50; }
+#confetti span { position: absolute; width: 0.5rem; height: 0.75rem; border-radius: 2px; animation: burst 0.95s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes burst { to { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; } }
+
+@media (max-width: 52rem) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 2.25rem 2rem; gap: 2rem; }
+  .pinned { grid-template-columns: minmax(0, 1fr); padding: 1.5rem 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div id="confetti" aria-hidden="true"></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><i>NR</i>Niwanseng Rai</a>
+    <div class="bar-right">
+      <nav class="nav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#soft-skills">Soft skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme"><span></span></button>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i>
+    <div>
+      <p class="eyebrow">Hello, I'm</p>
+      <h1 id="name">Niwanseng Rai</h1>
+      <p class="role">I am an <b id="role">AIML student</b><span class="caret"></span></p>
+      <p class="lede">Second-year B.E. student who builds practical web projects and learns something new with every one.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">Explore my projects <span class="arr">&rarr;</span></a>
+        <a class="btn" href="#contact">Contact me</a>
+      </div>
+    </div>
+    <aside class="facts" data-tilt aria-label="Quick facts">
+      <div class="monogram" aria-hidden="true">NR</div>
+      <dl>
+        <div><dt>Programme</dt><dd>B.E., AI &amp; Machine Learning</dd></div>
+        <div><dt>Year</dt><dd>2nd year</dd></div>
+        <div><dt>College</dt><dd>S.E.A. College of Engineering and Technology</dd></div>
+        <div><dt>First-year CGPA</dt><dd class="score"><span id="cgpa">8.65</span> <small>/ 10</small></dd></div>
+      </dl>
+    </aside>
+  </div>
+
+  <section id="about" class="about reveal">
+    <h2>About me</h2>
+    <p>I am a second-year AIML student who likes turning ideas into small, working web apps. I write HTML, CSS and JavaScript, think through problems in Python and C, and keep my work tidy with Git. I want to keep building things that make everyday life a little easier.</p>
+    <dl class="details">
+      <div><dt>Name</dt><dd>Niwanseng Rai</dd></div>
+      <div><dt>USN</dt><dd>1SP25AI035</dd></div>
+      <div><dt>Approach</dt><dd>Learn, practice, improve</dd></div>
+    </dl>
+  </section>
+
+  <section id="education" class="reveal">
+    <h2>Education</h2>
+    <ol class="timeline">
+      <li>
+        <span class="dot"></span>
+        <div class="when">Now</div>
+        <h3>B.E. in Artificial Intelligence and Machine Learning</h3>
+        <p>S.E.A. College of Engineering and Technology, Bengaluru. Affiliated to Visvesvaraya Technological University (VTU).</p>
+        <span class="pill">2nd year</span>
+      </li>
+      <li>
+        <span class="dot"></span>
+        <div class="when">Year 1</div>
+        <h3>First-year CGPA: 8.65</h3>
+        <div class="meter" id="meter" style="--v: 86.5%" role="img" aria-label="CGPA 8.65 out of 10"><i></i></div>
+        <div class="scale" aria-hidden="true"><span>0</span><span>5</span><span>10</span></div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h2>Projects</h2>
+    <article class="pinned">
+      <span class="pin">Pinned</span>
+      <div>
+        <div class="tag">VTU interdisciplinary project</div>
+        <h3>EcoTrack</h3>
+        <p class="sub">Waste Segregation Awareness</p>
+        <p>Learn which bin every item belongs in, log your waste and watch your impact grow. EcoTrack has a waste classifier, an interactive bin guide, a logger, a dashboard and a quiz, all in one free web app.</p>
+        <ul class="tools" aria-label="Built with">
+          <li class="on">HTML</li><li class="on">CSS</li><li class="on">JavaScript</li><li>No frameworks</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="ecotrack.html" target="_blank" rel="noopener">Open EcoTrack <span class="arr">&rarr;</span></a>
+          <a class="btn" href="https://github.com/niwansengrai13e" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="game" id="game" aria-label="Bin Buddy mini game">
+        <div class="game-head"><strong>Try it: Bin Buddy</strong><span class="stat" id="stat">Score 0 &middot; Streak 0</span></div>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <div id="play">
+          <div class="item" id="item"><span class="emo" id="emo"></span><span class="nm" id="nm"></span></div>
+          <div class="bins" role="group" aria-label="Choose a bin">
+            <button class="bin g" type="button" data-bin="green" aria-label="Green bin, wet waste">Green bin<small>Wet</small></button>
+            <button class="bin s" type="button" data-bin="blue" aria-label="Blue bin, dry waste">Blue bin<small>Dry</small></button>
+            <button class="bin r" type="button" data-bin="red" aria-label="Red bin, hazardous waste">Red bin<small>Hazardous</small></button>
+            <button class="bin k" type="button" data-bin="black" aria-label="Black bin, general waste">Black bin<small>General</small></button>
+          </div>
+          <p class="feedback" id="feedback" aria-live="polite">Which bin does this go in? Pick one.</p>
+        </div>
+        <div class="result" id="result" hidden>
+          <div class="big" id="finalScore"></div>
+          <p id="finalMsg"></p>
+          <div class="actions">
+            <button class="btn primary" id="again" type="button">Play again</button>
+            <a class="btn" href="ecotrack.html" target="_blank" rel="noopener">Full EcoTrack <span class="arr">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="upnext">
+      <span class="plus" aria-hidden="true">+</span>
+      <p>More mini projects are on the way. This space fills up as I build.</p>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <h2>Skills and tools</h2>
+    <div class="skills">
+      <div>
+        <h3>Languages</h3>
+        <ul class="chips">
+          <li><button class="chip" type="button" aria-pressed="false" data-note="Structure for every page I build, from EcoTrack's five screens to this portfolio.">HTML</button></li>
+          <li><button class="chip" type="button" aria-pressed="false" data-note="Layouts, themes and the playful animations you see on this page.">CSS</button></li>
+          <li><button class="chip" type="button" aria-pressed="false" data-note="The behaviour: EcoTrack's classifier and quiz, and the Bin Buddy game above.">JavaScript</button></li>
+          <li><button class="chip" type="button" aria-pressed="false" data-note="A core language for my AIML studies and problem solving.">Python</button></li>
+          <li><button class="chip" type="button" aria-pressed="false" data-note="The foundation for understanding how programs really work.">C</button></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Tools</h3>
+        <ul class="chips">
+          <li><button class="chip" type="button" aria-pressed="false" data-note="Where I write, run and debug my code.">VS Code</button></li>
+          <li><button class="chip" type="button" aria-pressed="false" data-note="My AI coding assistant for building and learning faster.">OpenCode</button></li>
+          <li><button class="chip" type="button" aria-pressed="false" data-note="Version control for my work, which lives on GitHub.">Git</button></li>
+        </ul>
+      </div>
+    </div>
+    <p class="note" id="note" aria-live="polite"><b>Tap a skill</b> to see what I use it for.</p>
+  </section>
+
+  <section id="soft-skills" class="reveal">
+    <h2>Soft skills</h2>
+    <div class="flips">
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="face front"><span class="tag">Soft skill</span><h3>Professionalism</h3><span class="hint">Tap to flip</span></span>
+        <span class="face back"><p>I show up on time, keep my promises and own my part of the team's work.</p></span>
+      </button>
+      <button class="flip" type="button" aria-pressed="false">
+        <span class="face front"><span class="tag">Soft skill</span><h3>Presentation</h3><span class="hint">Tap to flip</span></span>
+        <span class="face back"><p>I break ideas into simple steps and explain them clearly, with a live demo when I can.</p></span>
+      </button>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact</h2>
+    <p class="big-line">Let's build something useful together.</p>
+    <div class="contact-row">
+      <span class="email" id="email">niwansengrai13e@gmail.com</span>
+      <button class="btn" id="copy" type="button">Copy email</button>
+    </div>
+    <div class="actions">
+      <a class="btn primary" id="mailto" href="mailto:niwansengrai13e@gmail.com?subject=Hello%20Niwanseng">Email me <span class="arr">&rarr;</span></a>
+      <a class="btn" href="https://www.linkedin.com/in/niwanseng-rai-747a3b410" target="_blank" rel="noopener">LinkedIn <span class="arr">&rarr;</span></a>
+      <a class="btn" href="https://github.com/niwansengrai13e" target="_blank" rel="noopener">GitHub <span class="arr">&rarr;</span></a>
+    </div>
+    <p class="hint-line">If no mail app opens, tap Copy email and paste the address into Gmail or Outlook.</p>
+  </section>
+
+  <footer><span>&copy; 2026 Niwanseng Rai</span><span class="mono">Built with HTML, CSS and JavaScript</span></footer>
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var COLORS = ['var(--leaf)', 'var(--sky)', 'var(--coral)', 'var(--slate)', 'var(--ink)'];
+
+  /* ---- Confetti ---- */
+  var conf = document.getElementById('confetti');
+  function burst(x, y, n) {
+    if (reduce) return;
+    for (var i = 0; i < n; i++) {
+      var s = document.createElement('span');
+      var a = Math.random() * Math.PI * 2, d = 50 + Math.random() * 90;
+      s.style.left = x + 'px';
+      s.style.top = y + 'px';
+      s.style.background = COLORS[i % COLORS.length];
+      s.style.setProperty('--dx', Math.cos(a) * d + 'px');
+      s.style.setProperty('--dy', Math.sin(a) * d + 40 + 'px');
+      s.style.setProperty('--rot', Math.round(Math.random() * 720 - 360) + 'deg');
+      s.addEventListener('animationend', function () { this.remove(); });
+      conf.appendChild(s);
+    }
+  }
+  function burstAt(el, n) {
+    var r = el.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2, n);
+  }
+
+  /* ---- Bouncing name ---- */
+  var nameEl = document.getElementById('name');
+  var full = nameEl.textContent.trim();
+  var BIN_C = ['var(--muted)', 'var(--accent)', 'var(--muted)', 'var(--accent)'];
+  nameEl.setAttribute('aria-label', full);
+  nameEl.textContent = '';
+  var ci = 0;
+  full.split(' ').forEach(function (w) {
+    var word = document.createElement('span');
+    word.className = 'word';
+    word.setAttribute('aria-hidden', 'true');
+    w.split('').forEach(function (c) {
+      var s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = c;
+      s.style.setProperty('--i', ci);
+      s.style.setProperty('--c', BIN_C[ci % 4]);
+      ci++;
+      word.appendChild(s);
+    });
+    nameEl.appendChild(word);
+  });
+
+  /* ---- Role ticker ---- */
+  var roleEl = document.getElementById('role');
+  var roles = ['AIML student', 'web project builder', 'Python and C coder', 'team player'];
+  if (!reduce) {
+    var ri = 0, len = roles[0].length, phase = 'hold';
+    (function tick() {
+      var cur = roles[ri], delay = 70;
+      if (phase === 'hold') { phase = 'del'; delay = 1800; }
+      else if (phase === 'del') {
+        len--; roleEl.textContent = cur.slice(0, len); delay = 35;
+        if (len <= 0) { ri = (ri + 1) % roles.length; phase = 'type'; delay = 250; }
+      } else {
+        len++; cur = roles[ri]; roleEl.textContent = cur.slice(0, len);
+        if (len >= cur.length) { phase = 'hold'; }
+      }
+      setTimeout(tick, delay);
+    })();
+  }
+
+  /* ---- CGPA counter ---- */
+  var cg = document.getElementById('cgpa');
+  if (!reduce) {
+    var t0 = null;
+    cg.textContent = '0.00';
+    requestAnimationFrame(function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1400, 1);
+      cg.textContent = (8.65 * (1 - Math.pow(1 - p, 3))).toFixed(2);
+      if (p < 1) requestAnimationFrame(step); else cg.textContent = '8.65';
+    });
+  }
+
+  /* ---- Tilt ---- */
+  if (fine && !reduce) {
+    document.querySelectorAll('[data-tilt]').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'perspective(700px) rotateX(' + (-py * 9).toFixed(2) + 'deg) rotateY(' + (px * 11).toFixed(2) + 'deg)';
+      });
+      el.addEventListener('pointerleave', function () { el.style.transform = ''; });
+    });
+  }
+
+  /* ---- Theme toggle ---- */
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---- Scroll meter ---- */
+  var prog = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(window.scrollY / h, 1) : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---- Reveal and active nav ---- */
+  if ('IntersectionObserver' in window) {
+    var rv = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { rv.observe(el); });
+    var mv = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); mv.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    mv.observe(document.getElementById('meter'));
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+    var nv = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          var a = document.querySelector('.nav a[href="#' + e.target.id + '"]');
+          if (a) a.setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { nv.observe(s); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---- Skill chips ---- */
+  var note = document.getElementById('note');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      chips.forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+      c.setAttribute('aria-pressed', 'true');
+      note.innerHTML = '';
+      var b = document.createElement('b');
+      b.textContent = c.textContent + ': ';
+      note.appendChild(b);
+      note.appendChild(document.createTextNode(c.getAttribute('data-note')));
+      burstAt(c, 10);
+    });
+  });
+
+  /* ---- Soft skill flip cards ---- */
+  document.querySelectorAll('.flip').forEach(function (f) {
+    f.addEventListener('click', function () {
+      var on = f.getAttribute('aria-pressed') === 'true';
+      f.setAttribute('aria-pressed', on ? 'false' : 'true');
+      if (!on) burstAt(f, 12);
+    });
+  });
+
+  /* ---- Copy email ---- */
+  var copyBtn = document.getElementById('copy');
+  var emailEl = document.getElementById('email');
+  function selectEmail() {
+    var r = document.createRange();
+    r.selectNodeContents(emailEl);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+  }
+  copyBtn.addEventListener('click', function () {
+    var done = function (msg, ok) {
+      copyBtn.textContent = msg;
+      if (ok) burstAt(copyBtn, 16);
+      setTimeout(function () { copyBtn.textContent = 'Copy email'; }, 2200);
+    };
+    try {
+      navigator.clipboard.writeText(emailEl.textContent.trim()).then(
+        function () { done('Copied', true); },
+        function () { selectEmail(); done('Selected, press Ctrl+C', false); }
+      );
+    } catch (e) {
+      selectEmail();
+      done('Selected, press Ctrl+C', false);
+    }
+  });
+
+  /* ---- Bin Buddy game (items and tips come from EcoTrack's database) ---- */
+  var ITEMS = [
+    { e: '🍌', n: 'Banana peel', b: 'green', t: 'Compost it or use it for biogas.' },
+    { e: '🥚', n: 'Eggshell', b: 'green', t: 'Excellent for composting.' },
+    { e: '🥦', n: 'Vegetable scraps', b: 'green', t: 'Great for composting.' },
+    { e: '📰', n: 'Newspaper', b: 'blue', t: 'Keep it dry and it recycles fully.' },
+    { e: '🧴', n: 'Plastic bottle', b: 'blue', t: 'Rinse it and remove the cap.' },
+    { e: '🍶', n: 'Glass bottle', b: 'blue', t: 'Glass is 100% recyclable. Handle it carefully.' },
+    { e: '🔋', n: 'Battery', b: 'red', t: 'Never in regular bins. Take it to e-waste collection.' },
+    { e: '📱', n: 'Old mobile phone', b: 'red', t: 'E-waste. Take it to an authorised centre.' },
+    { e: '💊', n: 'Medicines', b: 'red', t: 'Return them to a pharmacy. Never flush them.' },
+    { e: '👶', n: 'Diaper', b: 'black', t: 'Wrap it in a bag before disposing.' },
+    { e: '🍽', n: 'Broken crockery', b: 'black', t: 'Wrap it carefully to prevent injury.' },
+    { e: '🧻', n: 'Used tissue', b: 'black', t: 'Used tissues are general waste.' }
+  ];
+  var BIN_NAME = { green: 'Green bin', blue: 'Blue bin', red: 'Red bin', black: 'Black bin' };
+  var ROUNDS = 8;
+  var q = [], idx = 0, score = 0, streak = 0, best = 0, locked = false, timer = null;
+  var $ = function (id) { return document.getElementById(id); };
+  var binBtns = Array.prototype.slice.call(document.querySelectorAll('.bin'));
+
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function stat() { $('stat').textContent = 'Score ' + score + ' · Streak ' + streak; }
+  function dots() {
+    var d = $('dots');
+    d.innerHTML = '';
+    for (var i = 0; i < ROUNDS; i++) { d.appendChild(document.createElement('i')); }
+  }
+  function show() {
+    var it = q[idx];
+    $('emo').textContent = it.e;
+    $('nm').textContent = it.n;
+    $('item').classList.remove('gone');
+    var emo = $('emo');
+    emo.style.animation = 'none'; void emo.offsetWidth; emo.style.animation = '';
+    binBtns.forEach(function (b) { b.disabled = false; b.classList.remove('right', 'wrong'); });
+    $('feedback').textContent = 'Which bin does this go in? Pick one.';
+    var ds = $('dots').children;
+    for (var i = 0; i < ds.length; i++) { ds[i].classList.toggle('now', i === idx); }
+    locked = false;
+  }
+  function start() {
+    clearTimeout(timer);
+    q = shuffle(ITEMS).slice(0, ROUNDS);
+    idx = 0; score = 0; streak = 0; best = 0;
+    dots(); stat();
+    $('result').hidden = true;
+    $('play').hidden = false;
+    show();
+  }
+  function finish() {
+    $('play').hidden = true;
+    $('result').hidden = false;
+    $('finalScore').textContent = score + ' / ' + ROUNDS;
+    $('finalMsg').textContent = score >= 7 ? 'Segregation pro! Your best streak was ' + best + '.' : score >= 4 ? 'Getting there. Best streak: ' + best + '. One more round?' : 'Good start. EcoTrack\'s bin guide will help.';
+    if (score >= 6) burstAt($('finalScore'), 26);
+  }
+  function answer(btn) {
+    if (locked) return;
+    locked = true;
+    var it = q[idx], ok = btn.getAttribute('data-bin') === it.b;
+    var ds = $('dots').children;
+    binBtns.forEach(function (b) { b.disabled = true; });
+    var right = binBtns.filter(function (b) { return b.getAttribute('data-bin') === it.b; })[0];
+    right.classList.add('right');
+    if (ok) {
+      score++; streak++; best = Math.max(best, streak);
+      ds[idx].classList.add('ok');
+      $('feedback').textContent = 'Correct! ' + it.t;
+      $('item').classList.add('gone');
+      burstAt(btn, 12);
+    } else {
+      streak = 0;
+      ds[idx].classList.add('no');
+      btn.classList.add('wrong');
+      $('feedback').textContent = 'Not quite. ' + it.n + ' goes in the ' + BIN_NAME[it.b] + '. ' + it.t;
+    }
+    stat();
+    timer = setTimeout(function () {
+      idx++;
+      if (idx >= ROUNDS) finish(); else show();
+    }, ok ? 1300 : 2400);
+  }
+  binBtns.forEach(function (b) { b.addEventListener('click', function () { answer(b); }); });
+  $('again').addEventListener('click', start);
+  start();
+})();
+</script>
+</body>
+</html>
